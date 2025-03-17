@@ -1,0 +1,10 @@
+
+
+.fluid {
+  font-size: calc(32px + 16 * ((100vw - 568px) / (768 - 568)));
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 24px;
+  line-height:  1;
+  text-align: center;
+}

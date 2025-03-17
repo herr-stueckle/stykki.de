@@ -1,0 +1,14 @@
+.image-frame{
+  width: 100%;
+  font-size: 100%;
+  
+}
+
+.project-wrapper{
+  height: calc(100vh - $footerHeight - $navigtionHeight);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+
+}

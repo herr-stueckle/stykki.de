@@ -1,0 +1,45 @@
+
+.subMenue-enter-active,
+.subMenue-leave-active {
+  transition: all 0.5s ease;
+}
+
+.subMenue-enter-active .link-black,
+.subMenue-leave-active .link-black{
+  transition: all 0.5s ease;
+}
+
+.subMenue-enter-from .link-black.test,
+.subMenue-leave-to .link-black.test {
+  transition-delay: 0.3s !important;
+  margin-left: 100px;
+  letter-spacing: 50px;
+  opacity: 0;
+  
+}
+
+.subMenue-enter-from .link-black{
+  margin-left: 100px;
+  letter-spacing: 50px;
+  opacity: 0;
+}
+
+
+.subMenue-leave-to .link-black{
+  margin-left: 100px;
+  letter-spacing: 50px;
+  opacity: 0;
+  
+  
+  
+}
+
+.content-enter-active,
+.content-leave-active {
+  transition: height 0.5s ease-out;
+}
+
+.content-enter,
+.content-leave-to {
+  height: 500px;
+}

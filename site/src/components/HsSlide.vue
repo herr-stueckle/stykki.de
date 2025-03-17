@@ -10,7 +10,7 @@
 import { defineProps, ref, withDefaults } from 'vue';
 
 interface Props {
-  msg: string
+  msg?: string
   labels?: string[]
 }
 

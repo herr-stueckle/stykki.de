@@ -30,6 +30,10 @@ module.exports = {
         "@typescript-eslint",
         "vue"
     ],
+
+  globals: {
+    process: 'readonly',
+  },
     "rules": {
     }
 }

@@ -1,0 +1,35 @@
+.navigation-link {
+  color: $color-white;
+  text-decoration: none;
+  font-size: 56px;
+}
+
+
+.link {
+  color: $color-white;
+  text-decoration: none;
+  font-size: 56px;
+  cursor: pointer;
+}
+
+
+
+.link-black{
+  color: $color-black;
+  text-decoration: none;
+  font-size: 56px;
+  cursor: pointer;
+}
+
+.link-black {
+  color: black;
+  opacity: 100;
+  margin-left: 0px;
+  transition: margin-left 0.2s ease;
+}
+
+.link-black:hover {
+  margin-left: 12px;
+  letter-spacing: 10px;
+  transition: all 0.2s ease;
+}

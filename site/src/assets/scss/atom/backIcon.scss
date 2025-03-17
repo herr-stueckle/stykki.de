@@ -1,0 +1,81 @@
+.arrow{
+  position:relative;
+  width: 52px;
+  height: 52px;
+  cursor:pointer;
+/*   border:solid 1px white; */
+  transition:0.5s;
+  overflow:hidden;
+}
+
+.arrow:hover{
+/*  animation:borderAni 5s cubic-bezier(0, 0.6, 1, 0.4); */
+      outline:1px solid white;
+    border-radius:50%;
+}
+.arrow:after{
+  position:absolute;
+  display:block;
+  content:"";
+  color:white;
+  width: 26px;
+  height: 26px;
+/*   border:solid 1px;  */
+  top:1px;
+  border-bottom:solid 2px;
+  transform:translatex(13px);
+}
+
+.arrow:before{
+  position: absolute;
+    display: block;
+    content: "";
+    color: white;
+    width: 16px;
+    height: 16px;
+    /* border: solid 1px; */
+    border-top: solid 2px;
+    border-left: solid 2px;
+    top: 50%;
+    left: 10px;
+    transform-origin: 0% 0%;
+    transform: rotatez(-45deg);
+
+}
+.arrow:hover:before{
+ animation: aniArrow01 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+.arrow:hover:after{
+ animation: aniArrow02 1s cubic-bezier(0, 0.6, 1, 0.4) infinite 0.5s;
+}
+
+
+@keyframes aniArrow01 {
+  0% {
+    transform:rotatez(-45deg) translateY(24px) translateX(24px);
+  }
+  100% {
+    transform: rotatez(-45deg) translateY(-36px) translateX(-36px);
+  }
+}
+
+
+@keyframes aniArrow02 {
+  0% {
+    transform:translateX(45px);
+  }
+  100% {
+    transform:translateX(-35px);
+  }
+}
+
+@keyframes borderAni{
+   0% {
+    border:solid 2px white;
+  }
+  100% {    
+    border:solid 2px white; 
+    border-radius:50%;
+  }
+}

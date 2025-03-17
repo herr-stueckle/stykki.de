@@ -1,24 +1,27 @@
 
-<script setup lang="ts">
-import { createApp } from 'vue';
-import HsSlide from './components/HsSlide.vue';
-
-const app = createApp({})
-
-app.component(
-  // the registered name
-  'App',
-  // the implementation
-  {
-    /* ... */
-  }
-)
-
-</script>
-
 <template>
-    <HsSlide msg="Tach"/>
+    <HsNavigation />
+    <RouterView  class="flex-spacer"/>
+    <HsFooter class="footer"/>
+
 </template>
 
-<style>
-</style>
+<script lang="ts" setup>
+import HsFooter from './components/HsFooter.vue';
+import HsNavigation from './components/HsNavigation.vue';
+</script>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+
+export default defineComponent({
+  name: 'App',
+  data(){
+    return{
+       apiURI: process.env.VUE_APP_API_URL
+    }
+  },
+
+});
+</script>

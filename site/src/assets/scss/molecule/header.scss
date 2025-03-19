@@ -5,11 +5,13 @@ header{
   border-bottom:  1px solid #000;
 }
 
-.breadCrumb{
+.breadCrumb {
   font-size: 28px;
   cursor: pointer;
   margin-left: $bu;
+  color: $color-white;
 }
+
 
 .mainNavigation{
   height: $navigtionHeight;
@@ -22,7 +24,7 @@ header{
 .projectNavigation{
   height: $navigtionHeight;
   border-top:  1px solid $color-black;
-  background-color: $color-black;
+  background-color:$color-black ;
   display: flex;
   align-items: center;
   padding: calc(2*$bu);
@@ -35,7 +37,7 @@ header{
 
 .navigation {
   background-color: $color-black;
-  height: calc(100vh - $navigtionHeight - $footerHeight);
+  height: calc(100vh - $navigtionHeight);
   width: 100%;
   position: absolute;
   
@@ -76,7 +78,7 @@ header{
 
 .header-main-enter-from,
 .header-main-leave-to {
-  margin-top: -96px;
+  margin-top: - $navigtionHeight;
 }
 
 

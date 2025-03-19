@@ -1,6 +1,6 @@
 <template>
   <div class="NavIconContainer" :class="{ active: global.menuIsActive }">
-    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="96" viewBox="0 0 200 200">
+    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 200 200">
       <g stroke-width="6.5" stroke-linecap="round">
         <path d="M72 82.286h28.75" fill="#009100" fill-rule="evenodd" stroke="#000" />
         <path

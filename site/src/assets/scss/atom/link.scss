@@ -1,6 +1,7 @@
 .navigation-link {
   color: $color-white;
   text-decoration: none;
+  font-weight: 900;
   font-size: 56px;
 }
 
@@ -10,6 +11,7 @@
   text-decoration: none;
   font-size: 56px;
   cursor: pointer;
+  font-weight: 900;
 }
 
 
@@ -19,6 +21,7 @@
   text-decoration: none;
   font-size: 56px;
   cursor: pointer;
+  font-weight: 900;
 }
 
 .link-black {
@@ -26,10 +29,12 @@
   opacity: 100;
   margin-left: 0px;
   transition: margin-left 0.2s ease;
+  font-weight: 900;
 }
 
 .link-black:hover {
   margin-left: 12px;
   letter-spacing: 10px;
   transition: all 0.2s ease;
+  font-weight: 900;
 }

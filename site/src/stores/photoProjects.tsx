@@ -32,7 +32,8 @@ interface ProjItem {
 export const usePhotoProjects = defineStore("photoProjects", {
   state: () => ({
     projectList: [] as Project[],
-    currentProject: 0
+    currentProject: 0,
+    currentSlide:-1
   }),
   actions: {
     init(pros: ProjItem[]) {
@@ -61,6 +62,9 @@ export const usePhotoProjects = defineStore("photoProjects", {
     },
     getCurrentProject(): Project | null {
       return this.projectList[this.currentProject] || null;
+    },
+    getCurrentSlide(): number | null {
+      return this.currentSlide;
     },
   },
 });

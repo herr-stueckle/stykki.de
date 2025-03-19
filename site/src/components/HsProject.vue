@@ -1,16 +1,30 @@
 <template>
-  <div class="frame" v-if="!global.subMenuIsActive">
-    <HsImage :image="projectImages[0]"/>
+  <div>
+    <div
+      v-if="id >= 0 && photoProjectList.currentSlide === -1"
+      v-html="projectDescription"
+      class="intro"
+      @click="nextSlide"
+    ></div>
+    <HsImage
+      ref="imageComponent"
+      v-if="
+        projectImages.length > 0 &&
+        photoProjectList.currentSlide >= 0 &&
+        photoProjectList.currentSlide < projectImages.length
+      "
+      :id="photoProjectList.currentSlide"
+      :key="photoProjectList.currentSlide"
+      :image="projectImages[photoProjectList.currentSlide]"
+      @click="nextSlide"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, onBeforeMount, ref, withDefaults } from 'vue';
-import { useGlobalStore } from '../stores/global';
-import { usePhotoProjects } from '../stores/photoProjects';
+import { defineProps, onBeforeMount, ref, withDefaults } from "vue";
+import { usePhotoProjects } from "../stores/photoProjects";
 import HsImage from "./HsImage.vue";
-
-const global = useGlobalStore();
 
 interface Image {
   img_date: string;
@@ -29,33 +43,36 @@ interface Props {
   id?: number;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  id: 0,
-});
-
-// Reactive object to hold project details
-const projectName = ref<string>('');
+const props = withDefaults(defineProps<Props>(), { id: -1 });
+const projectDescription = ref<string>("");
 const projectImages = ref<Image[]>([]);
-
 const photoProjectList = usePhotoProjects();
+const imageComponent = ref(null);
+
+function nextSlide() {
+  
+  if (photoProjectList.currentSlide == -1) {
+    photoProjectList.currentSlide = 0;
+  }
+  else if(photoProjectList.currentSlide < projectImages.value.length-1){
+    imageComponent.value?.triggerAnimation();
+  }
+  else{
+    photoProjectList.currentSlide = -1
+  }
+
+  
+}
 
 onBeforeMount(() => {
   if (props.id >= 0 && props.id < photoProjectList.projectList.length) {
     const project = photoProjectList.projectList[props.id];
-
-    // Zuweisen des Projektnamens
-    projectName.value = project.name;
-
-    // Parsing des JSON-Strings in ein Array von Objekten
+    projectDescription.value = project.description;
     try {
-      projectImages.value = JSON.parse(project.images); // Convert the string to an array
+      projectImages.value = JSON.parse(project.images);
     } catch (error) {
-      console.error("Failed to parse project images:", error);
-      projectImages.value = []; // Set to empty array on error
+      projectImages.value = [];
     }
-
-    console.log(Array.isArray(projectImages.value)); // Überprüfen, ob jetzt ein Array ist
-    console.log(photoProjectList.projectList[props.id].pro_ratio);
   }
 });
 </script>

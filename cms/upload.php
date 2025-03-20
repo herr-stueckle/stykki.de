@@ -86,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare("INSERT INTO images (img_path, img_folder, img_thumb_folder, img_project, img_name, img_name_en, img_description, img_description_en, img_date, img_width, img_height) VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?)");
             $stmt->bind_param("sssssssssss", $targetFile, $targetDir, $targetDirThumbs, $img_project, $img_name, $img_name_en, $img_description, $img_description_en, $img_date, $img_width, $img_height); // Daten binden
 
+            $filenameWithoutExt = pathinfo($_FILES["bild"]["name"], PATHINFO_FILENAME);
+
             if ($stmt->execute()) {
                 $toastMessage = "Die Datei wurde hochgeladen und die Informationen wurden in die Datenbank gespeichert.";
 
@@ -99,19 +101,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $new_img_width_10 = intdiv($img_width , $percent_10);
                 $new_img_height_10 = intdiv($img_height , $percent_10);
-        
-        
-        
-                $source = imagecreatefromjpeg($targetDir .$targetFile );
+
                 $thumb_25 = imagecreatetruecolor($new_img_width_25, $new_img_height_25);
                 $thumb_10 = imagecreatetruecolor($new_img_width_10, $new_img_height_10);
         
-                imagecopyresized($thumb_25, $source, 0, 0, 0, 0, $new_img_width_25, $new_img_height_25, $img_width, $img_height);
-                imagecopyresized($thumb_10, $source, 0, 0, 0, 0, $new_img_width_10, $new_img_height_10, $img_width, $img_height);
         
-                // Save the resized image
-                imagejpeg($thumb_25,  $targetDirThumbs . '/' . '25/' . date('m-d-Y-His') . '-' . basename($_FILES["bild"]["name"], 100));
-                imagejpeg($thumb_10,  $targetDirThumbs . '/' . '10/' . date('m-d-Y-His') . '-' . basename($_FILES["bild"]["name"], 100));
+
+                    if($imageFileType == "jpg"){
+                        $source = imagecreatefromjpeg($targetDir . $targetFile);
+                        imagecopyresized($thumb_25, $source, 0, 0, 0, 0, $new_img_width_25, $new_img_height_25, $img_width, $img_height);
+                        imagecopyresized($thumb_10, $source, 0, 0, 0, 0, $new_img_width_10, $new_img_height_10, $img_width, $img_height);
+                        imagejpeg($thumb_25, $targetDirThumbs . '/25/' . date('m-d-Y-His') . '-' . $filenameWithoutExt);
+                        imagejpeg($thumb_10, $targetDirThumbs . '/10/' . date('m-d-Y-His') . '-' . $filenameWithoutExt);
+                        
+                    } else if($imageFileType == "png"){
+                        $source = imagecreatefrompng($targetDir . $targetFile);
+                        imagecopyresized($thumb_25, $source, 0, 0, 0, 0, $new_img_width_25, $new_img_height_25, $img_width, $img_height);
+                        imagecopyresized($thumb_10, $source, 0, 0, 0, 0, $new_img_width_10, $new_img_height_10, $img_width, $img_height);
+                        imagepng($thumb_25, $targetDirThumbs . '/25/' . date('m-d-Y-His') . '-' . $filenameWithoutExt);
+                        imagepng($thumb_10, $targetDirThumbs . '/10/' . date('m-d-Y-His') . '-' . $filenameWithoutExt);
+                    }
+
+                    imagedestroy($source);
+                
+        
+               
 
             } else {
                 $toastMessage = "Fehler: " . $stmt->error;

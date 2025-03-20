@@ -1,9 +1,9 @@
 <template>
-  <div>
     <div
       v-if="id >= 0 && photoProjectList.currentSlide === -1"
       v-html="projectDescription"
       class="intro"
+      :class="projectRatio + 'TextFrame'"
       @click="nextSlide"
     ></div>
     <HsImage
@@ -16,9 +16,11 @@
       :id="photoProjectList.currentSlide"
       :key="photoProjectList.currentSlide"
       :image="projectImages[photoProjectList.currentSlide]"
+      :ratio="projectRatio"
       @click="nextSlide"
+      class="image-frame image"
+      :class="projectRatio"
     />
-  </div>
 </template>
 
 <script lang="ts" setup>
@@ -45,6 +47,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), { id: -1 });
 const projectDescription = ref<string>("");
+const projectRatio = ref<string>("");
 const projectImages = ref<Image[]>([]);
 const photoProjectList = usePhotoProjects();
 const imageComponent = ref(null);
@@ -60,7 +63,6 @@ function nextSlide() {
   else{
     photoProjectList.currentSlide = -1
   }
-
   
 }
 
@@ -68,6 +70,8 @@ onBeforeMount(() => {
   if (props.id >= 0 && props.id < photoProjectList.projectList.length) {
     const project = photoProjectList.projectList[props.id];
     projectDescription.value = project.description;
+    projectRatio.value = project.pro_ratio
+
     try {
       projectImages.value = JSON.parse(project.images);
     } catch (error) {
@@ -76,3 +80,64 @@ onBeforeMount(() => {
   }
 });
 </script>
+
+<style lang="scss">
+
+
+.panoramaTextFrame {
+  column-count: 1;
+  column-gap:24px;
+
+  width: 100%;
+
+  hyphens: auto; 
+	text-align: justify;
+
+
+  @media (min-width: 1025px) {
+    webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    width: 75%;
+  }
+
+  @media (min-width: 1920px) {
+    webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    width: 50%;
+    
+  }
+}
+
+
+.circleTextFrame {
+  width: 50%;
+  column-count: 1;
+  column-gap:24px;
+  width: 100%;
+
+  hyphens: auto; 
+	text-align: justify;
+
+  @media (min-width: 1025px) {
+    webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    width: 75%
+  }
+
+  @media (min-width: 1920px) {
+    webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    width: 50%;
+    
+  }
+
+}
+
+
+
+
+</style>

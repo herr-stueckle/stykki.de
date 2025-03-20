@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 
-
 interface Image {
   id: number;
   name: string; // Ensure this aligns with the actual structure of your images

@@ -4,8 +4,6 @@
 </template>
 
 
-
-
 <script lang="ts" setup>
 import { defineProps, ref, withDefaults } from 'vue';
 

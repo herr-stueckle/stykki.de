@@ -2,13 +2,8 @@
 <template>
   <div>
     User {{ userId }}
-  </div>
-  
+  </div>  
 </template>
-
-
-
-
 
 <script lang="ts" setup>
 import { defineProps } from 'vue';
@@ -21,11 +16,8 @@ const route = useRoute();
 const userId = route.query.id; // Accessing the query parameter 'id'
 
 </script>
-
-
 <script  lang="ts">
 import { defineComponent } from 'vue';
-
 
 export default defineComponent({
   name: 'HsAboutView',

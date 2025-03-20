@@ -1,6 +1,9 @@
 <template>
-
-    <img class="imageTransitionPanorama" ref="img" >
+<div>
+  <img ref="img" >
+  <div :class="props.ratio +'ImageTitle'" ref="title">{{ props.image.img_name }} | <span class="imageDate">{{ props.image.img_date }}</span></div>
+</div>
+    
 
 </template>
 
@@ -24,6 +27,7 @@ interface Image {
 interface Props {
   image: Image,
   id?: number;
+  ratio?: string
 }
 
 const apiURI = process.env.VUE_APP_API_URL;
@@ -31,6 +35,7 @@ const apiURI = process.env.VUE_APP_API_URL;
 
 const photoProjectList = usePhotoProjects();
 const img = ref<HTMLImageElement | null>(null);
+const title = ref<HTMLImageElement | null>(null);
 
 // Default values for the image prop must be provided via a function
 const props = withDefaults(defineProps<Props>(), {
@@ -47,6 +52,7 @@ const props = withDefaults(defineProps<Props>(), {
     img_description_en: "",
   }),
   id:0,
+  ratio:''
 });
 
 defineExpose({
@@ -55,6 +61,7 @@ defineExpose({
 
 onMounted(()=>{
   const imageSrc = `${apiURI}cms/${props.image.img_folder}${props.image.img_path}`;
+
     
   const preload = new Image();
   preload.src = imageSrc;
@@ -62,7 +69,8 @@ onMounted(()=>{
   preload.onload = () => {
     if (img.value) {
       img.value.src = preload.src;
-      img.value.classList.add("imageTransitionPanoramaIn");
+      img.value.classList.add(props.ratio + "TransitionIn");
+
     }
   };
 
@@ -71,25 +79,42 @@ onMounted(()=>{
     console.error('Bild konnte nicht geladen werden:', preload.src);
   };
 
+  setTimeout(()=>{
+    title.value?.classList.add('imageTitleShow')
+  }, 500)
+
 })
 
 function triggerAnimation (){
-  if(img.value?.classList.contains('imageTransitionPanoramaIn')){
-    img.value?.classList.remove('imageTransitionPanoramaIn')
-    img.value?.classList.add('imageTransitionPanoramaOut')
+  if(img.value?.classList.contains(props.ratio + "TransitionIn")){
+    img.value?.classList.remove(props.ratio + "TransitionIn")
+    title.value?.classList.remove('imageTitleShow')
+    img.value?.classList.add(props.ratio + "TransitionOut")
   }
   else{
-    img.value?.classList.add('imageTransitionPanoramaIn')
+    img.value?.classList.add(props.ratio + "TransitionIn")
+    
 
 
   }
-  setTimeout(()=>{
+  if(props.ratio ==="panorama"){
+    setTimeout(()=>{
     photoProjectList.currentSlide++
   }, 1000)
+  }
+
+  if(props.ratio ==="circle"){
+    setTimeout(()=>{
+    photoProjectList.currentSlide++
+  }, 1500)
+    
+  }
+
+
+
+
   
- //img.value?.classList.add("imageTransitionPanoramaIn")
-  //
-  //photoProjectList.currentSlide = props.id
+  
   
 }
 
@@ -105,15 +130,44 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.imageTransitionPanorama{
+.panoramaImageTitle{
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  opacity: 0;
+  transition: all 1s;
+  text-align: right;
+  margin-right: 25%;
+  border-top: 1px solid #000;
 }
 
-.imageTransitionPanoramaIn{
-  animation: 1s panoramaIn forwards;
+.circleImageTitle{
+  border-top: 1px solid #000;
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 900;
+  opacity: 0;
+  transition: all 1s;
+  text-align: right;
+  margin-right: 25%;
 }
 
-.imageTransitionPanoramaOut{
-  animation: 1s panoramaOut forwards;
+.imageDate{
+  font-size: 14px;
+  font-weight: 200;
+}
+.imageTitleShow {
+  opacity: 1;
+  margin-right: 0px;
+}
+
+
+.panoramaTransitionIn{
+  animation: 1s panoramaIn forwards ease-in-out;
+}
+
+.panoramaTransitionOut{
+  animation: 1s panoramaOut forwards ease-in-out;
 }
 
 @keyframes panoramaIn {
@@ -125,5 +179,31 @@ export default defineComponent({
   0% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
   100% { clip-path: polygon(75% 0%, 75% 0%, 75% 100%, 75% 100%);  }
 }
+
+
+
+.circleTransitionIn{
+  animation: 1.5s circleIn forwards ease-in-out;
+}
+
+.circleTransitionOut{
+  animation: 1.5s circleOut forwards ease-in-out;
+}
+
+@keyframes circleIn {
+  0% { clip-path: circle(0% at 50% 50%);}
+  10% { clip-path: circle(10% at 50% 50%);}
+  20% { clip-path: circle(0% at 50% 50%);}
+  100% { clip-path: circle(100% at 50% 50%);}
+}
+
+@keyframes circleOut {
+  0% { clip-path: circle(100% at 50% 50%); }
+  80% { clip-path: circle(0% at 50% 50%); }
+  90% { clip-path: circle(10% at 50% 50%); }
+  100% { clip-path: circle(0% at 50% 50%); }
+}
+
+
 
 </style>

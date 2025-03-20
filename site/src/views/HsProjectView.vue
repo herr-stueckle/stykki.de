@@ -9,7 +9,7 @@
       </div>
     </Transition>
     <div class="project-wrapper" v-if="global.projectViewIsActive">
-      <HsProject :id="selectedProject" class="image-frame" />
+      <HsProject :id="selectedProject"  />
     </div>
   </div>
 </template>
@@ -60,6 +60,7 @@ function setProject(id: number, e:MouseEvent) {
 
   selectedProject.value = id;
   global.currentPage = photoProjectList.projectList[id].name;
+  photoProjectList.currentSlide=-1
 
   menue.value = false;
   global.subMenuIsActive = false

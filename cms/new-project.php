@@ -66,7 +66,7 @@ include './snippets/head.html';
                             <option value="landscape">Landscape</option>';
                             <option value="portrait">Porträt</option>';
                             <option value="square">Qaudratisch</option>';
-                            <option value="circla">Kreis</option>';
+                            <option value="circle">Kreis</option>';
                         </select><br>
 
             <hr>

@@ -3,7 +3,6 @@
     <HsNavigation />
     <RouterView  class="flex-spacer"/>
     <HsFooter class="footer"/>
-
 </template>
 
 <script lang="ts" setup>
@@ -22,6 +21,5 @@ export default defineComponent({
        apiURI: process.env.VUE_APP_API_URL
     }
   },
-
 });
 </script>

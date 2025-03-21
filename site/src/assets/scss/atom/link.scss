@@ -1,5 +1,7 @@
+@use "../tokens/variables";
+
 .navigation-link {
-  color: $color-white;
+  color: variables.$color-white;
   text-decoration: none;
   font-weight: 900;
   font-size: 56px;
@@ -7,7 +9,7 @@
 
 
 .link {
-  color: $color-white;
+  color: variables.$color-white;
   text-decoration: none;
   font-size: 56px;
   cursor: pointer;
@@ -17,7 +19,7 @@
 
 
 .link-black{
-  color: $color-black;
+  color: variables.$color-black;
   text-decoration: none;
   font-size: 56px;
   cursor: pointer;

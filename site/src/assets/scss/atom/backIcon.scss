@@ -1,3 +1,5 @@
+@use "../tokens/variables";
+
 .arrow{
   position:relative;
   width: 42px;
@@ -6,20 +8,20 @@
 /*   border:solid 1px white; */
   transition:0.5s;
   overflow:hidden;
-  outline: 2px solid $color-white;
+  outline: 2px solid variables.$color-white;
   border-radius:50%;
 }
 
 .arrow:hover{
 /*  animation:borderAni 5s cubic-bezier(0, 0.6, 1, 0.4); */
-      outline: 2px solid $color-black ;
+      outline: 2px solid variables.$color-black ;
     border-radius:50%;
 }
 .arrow:after{
   position:absolute;
   display:block;
   content:"";
-  color:$color-black;
+  color:variables.$color-black;
   width: 21px;
   height: 21px;
 /*   border:solid 1px;  */
@@ -32,7 +34,7 @@
   position: absolute;
     display: block;
     content: "";
-    color: $color-black;
+    color: variables.$color-black;
     width: 12px;
     height: 12px;
     /* border: solid 1px; */
@@ -74,10 +76,10 @@
 
 @keyframes borderAni{
    0% {
-    border:solid 2px $color-black;
+    border:solid 2px variables.$color-black;
   }
   100% {    
-    border:solid 2px $color-black; 
+    border:solid 2px variables.$color-black; 
     border-radius:50%;
   }
 }

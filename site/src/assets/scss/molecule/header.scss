@@ -1,5 +1,7 @@
+@use "../tokens/variables";
+
 header{
-  height: $navigtionHeight;
+  height: variables.$navigtionHeight;
   position: sticky;
   z-index: 999;
   border-bottom:  1px solid #000;
@@ -8,40 +10,40 @@ header{
 .breadCrumb {
   font-size: 28px;
   cursor: pointer;
-  margin-left: $bu;
-  color: $color-black;
+  margin-left: variables.$bu;
+  color: variables.$color-black;
 }
 
 
 .mainNavigation{
-  height: $navigtionHeight;
+  height: variables.$navigtionHeight;
   display: flex;
   justify-content: flex-end;
-  padding-right: calc($bu);
-  padding-left:calc($bu) ;
+  padding-right: calc(variables.$bu);
+  padding-left:calc(variables.$bu) ;
   align-items: center;
   justify-content: space-between;
 }
 
 .projectNavigation{
-  height: $navigtionHeight;
-  border-top:  1px solid $color-black;
+  height: variables.$navigtionHeight;
+  border-top:  1px solid variables.$color-black;
   display: flex;
   align-items: center;
-  padding: calc(2*$bu);
-  background-color: $color-white;
+  padding: calc(2*variables.$bu);
+  background-color: variables.$color-white;
 }
 
 .header-wrapper{
-  height: $navigtionHeight;
+  height: variables.$navigtionHeight;
   overflow: hidden;
-  border-bottom:  1px solid $color-black;
+  border-bottom:  1px solid variables.$color-black;
   
 }
 
 .navigation {
-  background-color: $color-black;
-  height: calc(100vh - $navigtionHeight);
+  background-color: variables.$color-black;
+  height: calc(100vh - variables.$navigtionHeight);
   width: 100%;
   position: absolute;
   
@@ -58,7 +60,7 @@ header{
 }
 
 .navigation-list-item {
-  color: $color-white;
+  color: variables.$color-white;
 }
 
 
@@ -82,7 +84,7 @@ header{
 
 .header-main-enter-from,
 .header-main-leave-to {
-  margin-top: - $navigtionHeight;
+  margin-top: - variables.$navigtionHeight;
 }
 
 

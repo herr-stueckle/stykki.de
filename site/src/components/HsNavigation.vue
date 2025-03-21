@@ -32,7 +32,7 @@
               </RouterLink>
             </li>
             <li class="navigation-list-item" style="transition-delay: 0.2s;">
-              <RouterLink @click="toggleMenue($event, 'me')" :to="{ path: '/about', query: { id: '' } }"
+              <RouterLink @click="toggleMenue($event, 'me')" :to="{ path: '/about', query: { id: 'me' } }"
                 class="navigation-link">me</RouterLink>
             </li>
           </ul>

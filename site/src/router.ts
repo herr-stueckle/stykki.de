@@ -5,7 +5,7 @@ import HsRootView from './views/HsRootView.vue'
 
 const routes = [
   { path: '/', component: HsRootView},
-  { path: '/about', component: () => import('@/views/HsAboutView.vue') , props: true},
+  { path: '/about', component: () => import('@/views/HsPageView.vue') , props: true},
   { path: '/projects', component: HsProjectView },
 ]
 

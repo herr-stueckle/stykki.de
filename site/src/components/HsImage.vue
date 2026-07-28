@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="image">
   <img ref="img" >
   <div :class="props.ratio +'ImageTitle'" ref="title">{{ props.image.img_name }} | <span class="imageDate">{{ props.image.img_date }}</span></div>
 </div>
@@ -60,7 +60,7 @@ defineExpose({
 });
 
 onMounted(()=>{
-  const imageSrc = `${apiURI}cms/${props.image.img_folder}/${props.image.img_path}`;
+  const imageSrc = `${apiURI}/cms/${props.image.img_folder}/${props.image.img_path}`;
 
     
   const preload = new Image();
@@ -93,9 +93,6 @@ function triggerAnimation (){
   }
   else{
     img.value?.classList.add(props.ratio + "TransitionIn")
-    
-
-
   }
   if(props.ratio ==="panorama"){
     setTimeout(()=>{
@@ -130,6 +127,20 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+
+.image{
+  position:relative;
+}
+
+.buttons{
+  display: flex;
+  width: 100%;
+  padding-left:24px;
+  justify-content: flex-end;
+  position:absolute;
+  bottom:-80px;
+}
+
 .panoramaImageTitle{
   margin-top: 6px;
   font-size: 14px;
@@ -171,7 +182,7 @@ export default defineComponent({
 }
 
 @keyframes panoramaIn {
-  0% { clip-path: polygon(25% 0%, 0% 0%, 0% 100%, 25% 100%); }
+  0% { clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0 100%); }
   100% { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
 }
 
@@ -183,24 +194,20 @@ export default defineComponent({
 
 
 .circleTransitionIn{
-  animation: 1.5s circleIn forwards ease-in-out;
+  animation: 1s circleIn forwards ease-in-out;
 }
 
 .circleTransitionOut{
-  animation: 1.5s circleOut forwards ease-in-out;
+  animation: 1s circleOut forwards ease-in-out;
 }
 
 @keyframes circleIn {
   0% { clip-path: circle(0% at 50% 50%);}
-  10% { clip-path: circle(10% at 50% 50%);}
-  20% { clip-path: circle(0% at 50% 50%);}
   100% { clip-path: circle(100% at 50% 50%);}
 }
 
 @keyframes circleOut {
   0% { clip-path: circle(100% at 50% 50%); }
-  80% { clip-path: circle(0% at 50% 50%); }
-  90% { clip-path: circle(10% at 50% 50%); }
   100% { clip-path: circle(0% at 50% 50%); }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div v-if="!global.menuIsActive" >
     <Transition name="subMenue" @after-leave="onAfterLeave">
-      <div v-if="global.subMenuIsActive" style="margin-top: 12px;margin-left: 24px;">
+      <div v-if="global.subMenuIsActive" style="margin-top: 12px; margin-left: 24px;">
         <div v-for="(project, index) in photoProjectList.projectList" :key="index" class="link-black"
           @click="setProject(index, $event)">
           {{ project.name }}

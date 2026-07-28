@@ -1,9 +1,10 @@
 @use "../tokens/variables";
 
-.header-white {
-  header {
-    border-bottom: 1px solid #000;
-  }
+.header-black {
+
+   background-color: #000;
+   border-bottom: 1px solid #fff;
+
 
   .breadCrumb {
     color: variables.$color-black;
@@ -12,6 +13,38 @@
   .projectNavigation {
     border-top: 1px solid variables.$color-black;
     background-color: variables.$color-white;
+    margin-top: -1px;
+    border-bottom: 1px solid variables.$color-black;
+  }
+
+  .header-wrapper {
+    border-bottom: 1px solid #fff;
+
+  }
+
+  .navigation {
+    background-color: #000;
+  }
+
+  .navigation-list-item {
+    color: #fff;
+  }
+}
+
+.header-white {
+
+   background-color: #ffff;
+   border-bottom: 1px solid #0000;
+
+
+  .breadCrumb {
+    color: variables.$color-black;
+  }
+
+  .projectNavigation {
+    border-top: 1px solid variables.$color-black;
+    background-color: variables.$color-white;
+     margin-top: -1px;
   }
 
   .header-wrapper {
@@ -20,13 +53,14 @@
   }
 
   .navigation {
-    background-color: variables.$color-black;
+    background-color: #000;
   }
 
   .navigation-list-item {
-    color: variables.$color-white;
+    color: #fff;
   }
 }
+
 
 
 header {
@@ -74,12 +108,31 @@ header {
 
 }
 
+
+.navigation-wrapper {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - variables.$navigtionHeight);
+}
+
 .navigation {
   background-color: variables.$color-black;
   height: calc(100vh - variables.$navigtionHeight);
   width: 100%;
   position: absolute;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    pointer-events: none;
+  }
 
 }
 
@@ -107,7 +160,7 @@ header {
 
 .header-main-enter-from,
 .header-main-leave-to {
-  margin-top: - variables.$navigtionHeight;
+  margin-top: - variables.$navigtionHeight - 1px;
 }
 
 

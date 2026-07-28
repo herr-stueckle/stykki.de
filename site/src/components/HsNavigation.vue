@@ -1,5 +1,5 @@
 <template>
-  <header :class="`header-${colorTheme}`">
+  <header class="header-black">
     <div class="header-wrapper">
       <Transition name="header-main">
         <div v-if="!global.projectViewIsActive" class="mainNavigation">
@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <div class="menue-wrapper flex-spacer">
+    <div class="">
       <Transition name="fade" @after-leave="onAfterLeave">
         <nav
           class="navigation"
@@ -81,10 +81,8 @@
 
 <script lang="ts" setup>
 import { useGlobalStore } from "../stores/global";
-import { storeToRefs } from "pinia";
 import HsNavigationIcon from "./HsNavigationIcon.vue";
 const global = useGlobalStore();
-const { colorTheme } = storeToRefs(global);
 
 function toggleMenue(e: MouseEvent, breadcrumb: string) {
   if (e && e.currentTarget instanceof HTMLElement) {
@@ -95,7 +93,6 @@ function toggleMenue(e: MouseEvent, breadcrumb: string) {
     global.breadCrumb = breadcrumb;
   }
 
-  global.setColorTheme("white");
   global.toggle();
 }
 

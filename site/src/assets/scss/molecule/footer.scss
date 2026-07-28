@@ -1,8 +1,18 @@
 @use "../tokens/variables";
+.footer-black {
+  background-color: #000;
+  border-top: 1px dashed #fff
 
+}
+
+.footer-white {
+  background-color: #fff;
+   border-top: 1px dashed #000
+
+} 
 .footer{
+  
   height: variables.$footerHeight;
-  position: absolute;
-  bottom: 0;
   width: 100vw;
+ 
 }

@@ -16,7 +16,8 @@
 }
 
 .project-wrapper{
-  min-height: calc(70vh - variables.$footerHeight - variables.$navigtionHeight);
+  /*min-height: calc(70vh - variables.$footerHeight - variables.$navigtionHeight);*/
+  min-width: 100%;
   display: flex;
   padding: 5%;
 }

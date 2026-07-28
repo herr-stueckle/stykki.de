@@ -4,17 +4,23 @@
   position:relative;
   width: 42px;
   height: 42px;
+
+   @media (max-width: 1025px) {
+    scale:80% ;
+  }
+  
   cursor:pointer;
-/*   border:solid 1px white; */
+  background: rgba(255, 255, 255, 0.5);
   transition:0.5s;
   overflow:hidden;
   outline: 2px solid variables.$color-white;
   border-radius:50%;
+  scale:100% ;
 }
 
 .arrow:hover{
 /*  animation:borderAni 5s cubic-bezier(0, 0.6, 1, 0.4); */
-      outline: 2px solid variables.$color-black ;
+    outline: 2px solid variables.$color-black ;
     border-radius:50%;
 }
 .arrow:after{

@@ -8,7 +8,7 @@
         </div>
       </div>
     </Transition>
-    <div class="project-wrapper" v-if="global.projectViewIsActive">
+    <div v-if="global.projectViewIsActive">
       <HsProject :id="selectedProject"  />
     </div>
   </div>

@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 export const useGlobalStore = defineStore("global", {
   state: () => {
     return { 
+      colorTheme: 'black',
       menuIsActive: false,
       subMenuIsActive: false,
       projectViewIsActive: false,
@@ -20,6 +21,9 @@ export const useGlobalStore = defineStore("global", {
     setInActive(){
       this.menuIsActive = false
       this.subMenuIsActive = true
+    },
+    setColorTheme(value:string){
+      this.colorTheme = value
     }
   },
 });

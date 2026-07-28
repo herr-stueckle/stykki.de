@@ -1,12 +1,15 @@
 <template>
+  <div v-if="id >= 0 && photoProjectList.currentSlide === -1" class="project-wrapper text-left">
     <div
-      v-if="id >= 0 && photoProjectList.currentSlide === -1"
       v-html="projectDescription"
       class="intro"
       :class="projectRatio + 'TextFrame'"
       @click="nextSlide"
     ></div>
-    <HsImage
+  </div>
+    <div class="project-wrapper image-center">
+
+<HsImage
       ref="imageComponent"
       v-if="
         projectImages.length > 0 &&
@@ -21,6 +24,9 @@
       class="image-frame image"
       :class="projectRatio"
     />
+    </div>
+
+    
 </template>
 
 <script lang="ts" setup>
@@ -75,6 +81,7 @@ onBeforeMount(() => {
     try {
       projectImages.value = JSON.parse(project.images);
     } catch (error) {
+      console.log(error)
       projectImages.value = [];
     }
   }
@@ -85,55 +92,13 @@ onBeforeMount(() => {
 
 
 .panoramaTextFrame {
-  column-count: 1;
-  column-gap:24px;
+   max-width:1024px;
 
-  width: 100%;
-
-  hyphens: auto; 
-	text-align: justify;
-
-
-  @media (min-width: 1025px) {
-    webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-    width: 75%;
-  }
-
-  @media (min-width: 1920px) {
-    webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-    width: 50%;
-    
-  }
 }
 
 
 .circleTextFrame {
-  width: 50%;
-  column-count: 1;
-  column-gap:24px;
-  width: 100%;
-
-  hyphens: auto; 
-	text-align: justify;
-
-  @media (min-width: 1025px) {
-    webkit-column-count: 2;
-    -moz-column-count: 2;
-    column-count: 2;
-    width: 75%
-  }
-
-  @media (min-width: 1920px) {
-    webkit-column-count: 3;
-    -moz-column-count: 3;
-    column-count: 3;
-    width: 50%;
-    
-  }
+ max-width:1024px;
 
 }
 

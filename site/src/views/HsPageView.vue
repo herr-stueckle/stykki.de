@@ -1,6 +1,6 @@
 
 <template>
-  <div class="project-wrapper">
+  <div class="">
    
     <div  v-html="pagecontent?.content" class="textFrame">
 
@@ -17,39 +17,28 @@
     ></div>
 
 <script lang="ts" setup>
-import { defineProps, onMounted, ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { usePages } from '../stores/pages';
 
-interface Page {
-  title: string;
-  title_en: string; 
-  content: string;
-  content_en: string;
-}
-
+console.log('script setup running'); // add this too, temporarily
 
 const route = useRoute();
 const pages = usePages();
-const pageId = ref(route.query.id as string | undefined); // Type assertion for better accuracy
-const pagecontent = ref<Page | null>(null);
+const pagecontent = ref(null);
 
-
-
-defineProps({
-  id: String
-})
-
-onMounted(()=>{
-  if (pageId.value) {
-    const page = pages.getPage(pageId.value);
-    pagecontent.value = page || null; // Assigning the entire page object or null
-    console.log(pagecontent.value?.content);
-  }
-})
-
-
+watch(
+  () => route.query.id,
+  (newId) => {
+    
+    pagecontent.value = newId ? pages.getPage(newId as string) || null : null;
+    console.log(pagecontent);
+  },
+  { immediate: true }
+);
 </script>
+
+
 <script  lang="ts">
 import { defineComponent } from 'vue';
 

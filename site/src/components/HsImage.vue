@@ -60,7 +60,7 @@ defineExpose({
 });
 
 onMounted(()=>{
-  const imageSrc = `${apiURI}cms/${props.image.img_folder}${props.image.img_path}`;
+  const imageSrc = `${apiURI}cms/${props.image.img_folder}/${props.image.img_path}`;
 
     
   const preload = new Image();

@@ -1,44 +1,77 @@
 @use "../tokens/variables";
 
-header{
+.header-white {
+  header {
+    border-bottom: 1px solid #000;
+  }
+
+  .breadCrumb {
+    color: variables.$color-black;
+  }
+
+  .projectNavigation {
+    border-top: 1px solid variables.$color-black;
+    background-color: variables.$color-white;
+  }
+
+  .header-wrapper {
+    border-bottom: 1px solid variables.$color-black;
+
+  }
+
+  .navigation {
+    background-color: variables.$color-black;
+  }
+
+  .navigation-list-item {
+    color: variables.$color-white;
+  }
+}
+
+
+header {
   height: variables.$navigtionHeight;
   position: sticky;
   z-index: 999;
-  border-bottom:  1px solid #000;
+}
+
+
+.navigation-list {
+  margin: 0 0;
+  list-style: none;
+  margin-top: 12px;
+  margin-left: 24px;
+  padding-left: 0;
 }
 
 .breadCrumb {
   font-size: 28px;
   cursor: pointer;
   margin-left: variables.$bu;
-  color: variables.$color-black;
 }
 
 
-.mainNavigation{
+.mainNavigation {
   height: variables.$navigtionHeight;
   display: flex;
   justify-content: flex-end;
   padding-right: calc(variables.$bu);
-  padding-left:calc(variables.$bu) ;
+  padding-left: calc(variables.$bu);
   align-items: center;
   justify-content: space-between;
 }
 
-.projectNavigation{
+.projectNavigation {
   height: variables.$navigtionHeight;
-  border-top:  1px solid variables.$color-black;
   display: flex;
   align-items: center;
   padding: calc(2*variables.$bu);
-  background-color: variables.$color-white;
 }
 
-.header-wrapper{
+.header-wrapper {
   height: variables.$navigtionHeight;
   overflow: hidden;
-  border-bottom:  1px solid variables.$color-black;
-  
+
 }
 
 .navigation {
@@ -46,24 +79,14 @@ header{
   height: calc(100vh - variables.$navigtionHeight);
   width: 100%;
   position: absolute;
-  
-  clip-path: polygon(0 0, 100% 0,100% 100%,0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 
 }
 
-.navigation-list {
-  margin: 0 0;
-  list-style: none;
-  margin-top: 12px; 
-  margin-left: 24px;
-  padding-left: 0;
+
+.fade-leave-to .navigation-link {
+  opacity: 0;
 }
-
-.navigation-list-item {
-  color: variables.$color-white;
-}
-
-
 
 .navigation-link {
   opacity: 100;
@@ -88,14 +111,15 @@ header{
 }
 
 
-.fade-enter-active{
+.fade-enter-active {
   animation: bounce-in 0.5s linear;
 }
+
 .fade-leave-active {
   animation: bounce-out 0.5s 0.4s linear;
 }
 
-.fade-enter-from{
+.fade-enter-from {
   animation: bounce-in 0.5s linear;
 }
 
@@ -106,26 +130,30 @@ header{
 
 @keyframes bounce-in {
   0% {
-    clip-path: polygon(0 0, 100% 0,100% 0%,0 0%);
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
   }
+
   50% {
-    clip-path: polygon(0 0, 100% 0,100% 100%,0 50%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
   }
+
   100% {
-    clip-path: polygon(0 0, 100% 0,100% 100%,0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 }
 
 @keyframes bounce-out {
   0% {
-    clip-path: polygon(0 0, 100% 0,100% 100%,0 100%);
-    
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
   }
+
   50% {
-    clip-path: polygon(0 0, 100% 0,100% 100%,0 50%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50%);
   }
+
   100% {
-    clip-path: polygon(0 0, 100% 0,100% 0%,0 0%);
+    clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
   }
 }
 
@@ -133,7 +161,7 @@ header{
 .fade-enter-active .navigation-link,
 .fade-leave-active .navigation-link {
   transition: all 0.5s ease;
-  
+
 }
 
 .fade-enter-from .navigation-link.navigation-clicked,
@@ -142,18 +170,11 @@ header{
   margin-left: 100px;
   letter-spacing: 50px;
   opacity: 0;
-  
+
 }
 
-.fade-enter-from .navigation-link{
+.fade-enter-from .navigation-link {
   margin-left: 100px;
   letter-spacing: 50px;
   opacity: 0;
-}
-.fade-leave-to .navigation-link {
-
-  opacity: 0;
-  
-  
-  
 }

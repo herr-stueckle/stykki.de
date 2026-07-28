@@ -18,10 +18,12 @@ export const usePages = defineStore("pages", {
   actions: {
     init(pros: Pages) {
      this.pageList = JSON.parse(JSON.stringify(pros));
+     console.log(this.pageList)    
     },
     getPage(title: string): Page | null {
       
       const page = this.pageList.find((page) => page.title === title);
+      console.log(this.pageList)
       return page || null;
     },
   },
